@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title layout:fragment="title">JavaEE-T2</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/shards.min.css">
+	<title layout:fragment="title">Website title - bootstrap html template</title>
+
+	<link th:href="@{/images/favicon.ico}" rel="shortcut icon" type="image/x-icon">
+
+	<script type="text/javascript" th:src="@{http://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=bNcBBSwZTCWyxLMcNaIiQk_urY1wKaBhVd_QDtQK_bvRt3HYML2f9Jze_3Rlcta79Mucy9QU7LaYmrEYAlep14fXPyJ1dsjxM12F88LOU1_VnaFbL2HHhgazw29z4dg69oWDhe9dhZ_ZGbFJYVrAGw}" charset="UTF-8"></script>
+	<script th:src="@{/js/jquery-2.0.0.min.js}" type="text/javascript"></script>
+
+
+	<script th:src="@{/js/bootstrap.bundle.min.js}" type="text/javascript"></script>
+
+	<script th:src="@{/js/script.js}" type="text/javascript"></script>
+
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+			// jQuery code
+
+		});
+		// jquery end
+	</script>
+
+	<script th:src="@{https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js}"></script>
+
+</head>
+<body>
+
+
+<nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: rgba(34,21,33,0.06);">
+
+
+	<a class="brand-wrap" th:href="@{'/'}"><img class="logo" th:src="@{/images/logo.png}" width="80px" height="60px"></a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+		<ul class="navbar-nav mr-auto" sec:authorize = "isAnonymous()">
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{'?lng=en'}">ENG</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{'?lng=kz'}">КАЗ</span></a>
+			</li>
+
+
+		</ul>
+
+
+		<ul class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
+			<li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
+				<a class="nav-link" th:href="@{/userProfile}">Profile</span></a>
+			</li>
+			<li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+				<a class="nav-link" th:href="@{/adminProfile}">Profile</span></a>
+			</li>
+			<li class="nav-item" sec:authorize="hasRole('ROLE_MODERATOR')">
+				<a class="nav-link" th:href="@{/moderatorProfile}">Profile</span></a>
+			</li>
+
+		</ul>
+
+		<ul class ="navbar-nav " sec:authorize="isAuthenticated()">
+			<li class="nav-item" sec:authorize="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_MODERATOR')">
+
+                    <span>
+                        User: <span class="navbar-text" sec:authentication = "name"></span><!--                Role: <span class="navbar-text" sec:authentication property = "authorities"></span>-->
+                    </span>
+				<form th:action = "@{'/exit'}" id = "logoutForm"></form>
+			<li class="nav-item">
+				<a class="nav-link" href="JavaScript:void(0)" onclick="logout()">Logout</a>
+			</li>
+			<script type="text/javascript">
+				function logout(){
+					document.getElementById("logoutForm").submit();
+				}
+			</script>
+
+			</li>
+		</ul>
+
+
+		<ul class="navbar-nav " sec:authorize = "isAnonymous()">
+
+
+
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/pageLogin}">Log In</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/pageRegister}" >Register</a>
+			</li>
+		</ul>
+
+	</div>
+
+</nav>
+
+
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+<div class="container pt-5" layout:fragment = "contentPart" style="min-height: 800px;">
+</div>
+<div class="container">
+	<span >2020 &#9400; <a style="text-decoration: none;" href="/">Project IITU JAVAEE </a>, email: <a style="text-decoration: none;" href="#">bazarbayeva@gmail.com</a></span>
+</div>
+</body>
+</html>

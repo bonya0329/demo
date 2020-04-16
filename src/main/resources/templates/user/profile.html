@@ -1,0 +1,97 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  layout:decorator="main/main.html">
+
+
+<title layout:fragment="title">User profile</title>
+
+<div layout:fragment = "contentPart" >
+	<!-- ========================= SECTION PAGETOP ========================= -->
+	<section class="section-pagetop bg">
+		<div class="container">
+			<h2 class="title-page">User profile</h2>
+		</div> <!-- container //  -->
+	</section>
+	<!-- ========================= SECTION INTRO END// ========================= -->
+
+	<!-- ========================= SECTION CONTENT ========================= -->
+	<section class="section-content padding-y">
+		<div class="container">
+
+			<div class="row">
+
+				<main class="col-md-9">
+
+					<article class="card mb-3">
+						<div class="card-body">
+
+							<figure class="icontext">
+								<div class="icon">
+									<img class="rounded-circle img-sm border" th:src="@{/images/mimi.jpg}" width="300px" height="300px" >
+								</div>
+
+
+								<div class="text">
+									<strong><span class="navbar-text" sec:authentication = "name"></span> </strong> <br>
+									Role: <span class="navbar-text" sec:authentication property = "authorities"></span><br>
+									<a href="#">Details</a>
+								</div>
+							</figure>
+							<hr>
+							<p>
+								<i class="fa fa-map-marker text-muted"></i> &nbsp;Location:
+								<br>
+								Almaty city, Abaya-Manasa name, House 33A &nbsp
+								<a href="#" class="btn-link"> Details</a>
+							</p>
+
+
+
+							<article class="card-group">
+								<figure class="card bg">
+									<div class="p-3">
+										<h5 class="card-title">13</h5>
+										<a href="#"><i class='fas fa-cart-plus'></i></a>
+										<span>Orders</span>
+									</div>
+								</figure>
+								<figure class="card bg">
+									<div class="p-3">
+										<h5 class="card-title">2</h5>
+										<a href="#"><i class='fas fa-coffee'></i></a>
+										<span>Americano</span>
+									</div>
+								</figure>
+								<figure class="card bg">
+									<div class="p-3">
+										<h5 class="card-title">3</h5>
+										<a href="#"><i class='fas fa-coffee'></i></a>
+										<span>Mokko</span>
+									</div>
+								</figure>
+								<figure class="card bg">
+									<div class="p-3">
+										<h5 class="card-title">8</h5>
+										<a href="#"><i class='fas fa-coffee'></i></a>
+										<span>Cappuccino</span>
+									</div>
+								</figure>
+							</article>
+
+
+						</div> <!-- card-body .// -->
+					</article> <!-- card.// -->
+
+
+
+				</main> <!-- col.// -->
+			</div>
+
+		</div> <!-- container .//  -->
+	</section>
+
+	<a class="list-group-item" th:href="@{/product/pageProductsListUser}"> Products List </a>
+</div>
+
+</html>
